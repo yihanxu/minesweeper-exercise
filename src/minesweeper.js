@@ -31,9 +31,10 @@ const generateBombBoard = (numberOfRows, numberOfColumns,
   let numberOfBombsPlaced = 0;
   while(numberOfBombsPlaced<numberOfBombs){
   	let randomRowIndex;
-  	randomRowIndex = Math.floor(Math.random()*(numberOfRows+1));
+  	randomRowIndex = Math.floor(Math.random()*numberOfRows);
   	let randomColumnIndex;
-  	randomColumnIndex = Math.floor(Math.random()*(numberOfColumns+1));
+  	randomColumnIndex = Math.floor(Math.random()*numberOfColumns);
+  	// no need to plus one as the index starts from 0
   	board[randomRowIndex][randomColumnIndex] = 'B';
   	numberOfBombsPlaced += 1;
   	// need to fix the issue of placing bomb at existing ones later
@@ -42,8 +43,7 @@ const generateBombBoard = (numberOfRows, numberOfColumns,
 };
 
 const printBoard = (board) => {
-  board.map(row => row.join(' | ')).join('\n');
-  console.log(board);
+  console.log(board.map(row => row.join(' | ')).join('\n'));
 };
 
 const playerBoard = generatePlayerBoard(3,4);
