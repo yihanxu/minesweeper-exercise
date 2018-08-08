@@ -35,9 +35,10 @@ const generateBombBoard = (numberOfRows, numberOfColumns,
   	let randomColumnIndex;
   	randomColumnIndex = Math.floor(Math.random()*numberOfColumns);
   	// no need to plus one as the index starts from 0
+  	if(board[randomRowIndex][randomColumnIndex] != 'B'){
   	board[randomRowIndex][randomColumnIndex] = 'B';
-  	numberOfBombsPlaced += 1;
-  	// need to fix the issue of placing bomb at existing ones later
+  	numberOfBombsPlaced += 1;}
+  	//fixed the issue of placing duplicated bomb
   }
 	return board;
 };
