@@ -43,6 +43,27 @@ const generateBombBoard = (numberOfRows, numberOfColumns,
 	return board;
 };
 
+display the number of bombs adjacent to the flipped tile
+const getNumberOfNeighbourBombs = (bombBoard, rowIndex, ColumnIndex) {
+//A flipped tile can have 8 possible neighbors, at most, regardless the board size
+  const neighbourOffsets = [
+  	[-1,-1],
+  	[-1,0],
+  	[-1,1],
+  	[0,-1],
+  	[0,1],
+  	[1,-1],
+  	[1,0],
+  	[1,1],
+  ];
+
+  const numberOfRows = bombBoard.length;
+  const numberOfColumns = bombBoard[0].length;
+  const numberOfBombs = 0;
+};
+
+
+
 const printBoard = (board) => {
   console.log(board.map(row => row.join(' | ')).join('\n'));
 };
@@ -56,6 +77,9 @@ printBoard(playerBoard);
 console.log('Bomb Board:');
 printBoard(bombBoard);
 
+// test the number of rows and columns
+// console.log(bombBoard.length);
+// console.log(bombBoard[0].length);
 
 
 
