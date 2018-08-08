@@ -59,9 +59,29 @@ const getNumberOfNeighbourBombs = (bombBoard, rowIndex, ColumnIndex) {
 
   const numberOfRows = bombBoard.length;
   const numberOfColumns = bombBoard[0].length;
-  const numberOfBombs = 0;
+  let numberOfBombs = 0;
+
+  neighbourOffsets.forEach(offset => {
+  	const neighbourRowIndex = rowIndex + offset[0];
+  	const neighbourColumnIndex = columnIndex + offset[1];
+  	if (neighbourRowIndex >= 0 &&
+  		neighbourRowIndex <= numberOfRows &&
+  		neighbourColumnIndex >= 0 &&
+  		neighbourColumnIndex <= numberOfColumns) {
+  		if (bombBoard[neighbourRowIndex, neighbourColumnIndex] === 'B') {
+  			numberOfBombs += 1;
+  		}
+  	}
+  });
+
+  return numberOfBombs;
+
 };
 
+const flipTile = (playerBoard, bombBoard, rowIndex, columnIndex) => {
+
+
+};
 
 
 const printBoard = (board) => {
