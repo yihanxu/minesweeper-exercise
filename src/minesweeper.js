@@ -43,8 +43,9 @@ const generateBombBoard = (numberOfRows, numberOfColumns,
 	return board;
 };
 
-display the number of bombs adjacent to the flipped tile
-const getNumberOfNeighbourBombs = (bombBoard, rowIndex, ColumnIndex) {
+// display the number of bombs adjacent to the flipped tile
+
+const getNumberOfNeighbourBombs = (bombBoard, rowIndex, columnIndex) =>{
 //A flipped tile can have 8 possible neighbors, at most, regardless the board size
   const neighbourOffsets = [
   	[-1,-1],
@@ -79,7 +80,15 @@ const getNumberOfNeighbourBombs = (bombBoard, rowIndex, ColumnIndex) {
 };
 
 const flipTile = (playerBoard, bombBoard, rowIndex, columnIndex) => {
-
+  if (bombBoard[rowIndex][columnIndex] === ' ') {
+  	console.log("This tile has already been flipped!");
+  	return;
+  } else if (bombBoard[rowIndex][columnIndex] === 'B') {
+  	playerBoard[rowIndex][columnIndex] = 'B';
+  } else {
+  	playerBoard[rowIndex][columnIndex] = getNumberOfNeighbourBombs(
+  		bombBoard,rowIndex, columnIndex);
+  }
 
 };
 
@@ -88,14 +97,18 @@ const printBoard = (board) => {
   console.log(board.map(row => row.join(' | ')).join('\n'));
 };
 
-const playerBoard = generatePlayerBoard(3,4);
-const bombBoard = generateBombBoard(3,4,5);
+const playerBoard = generatePlayerBoard(3,3);
+const bombBoard = generateBombBoard(3,3,4);
 
 console.log('Player Board:');
 printBoard(playerBoard);
 
 console.log('Bomb Board:');
 printBoard(bombBoard);
+
+flipTile(playerBoard, bombBoard, 0, 1);
+console.log('Updated Player Board:');
+printBoard(playerBoard);
 
 // test the number of rows and columns
 // console.log(bombBoard.length);
