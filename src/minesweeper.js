@@ -1,17 +1,39 @@
 // Dynamic code version 5, 9 Aug 2018
+
+// create the Game class
+class Game {
+  constructor(numberOfRows, numberOfColumns, numberOfBombs) {
+    this._board = new Board(numberOfRows, numberOfColumns, numberOfBombs);
+  };
+
+  playerMove(rowIndex, columnIndex){
+    this._board.flipTile(rowIndex, columnIndex);
+      if(this._board.playerBoard[rowIndex][columnIndex] === "B"){
+        console.log('The game is over!');
+        this._board.print();
+      } else if(!this._board.hasSafeTiles){
+        console.log('You have won the game!');
+      } else {
+        console.log('Current Board: ');
+        this._board.print();
+      }
+  }
+};
+
+// create the Board class
 class Board {
   constructor(numberOfRows, numberOfColumns, numberOfBombs){
     this._numberOfBombs = numberOfBombs;
     this._numberOfTiles = numberOfRows * numberOfColumns;
-    this._playerBoard = generatePlayerBoard(numberOfRows,
+    this._playerBoard = Board.generatePlayerBoard(numberOfRows,
       numberOfColumns);
-    this._bombBoard = generateBombBoard(numberOfRows,
+    this._bombBoard = Board.generateBombBoard(numberOfRows,
       numberOfColumns, numberOfBombs);
-  }
+  };
 
   get playerBoard (){
     return this._playerBoard;
-  }
+  };
 
   flipTile (rowIndex, columnIndex) {
     if (this._bombBoard[rowIndex][columnIndex] === ' ') {
@@ -112,26 +134,29 @@ class Board {
 
 // test sample
 // console.log(generatePlayerBoard(3,3));
+// const playerBoard = generatePlayerBoard(3,3);
+// const bombBoard = generateBombBoard(3,3,4);
 
+// console.log('Player Board:');
+// printBoard(playerBoard);
 
+// console.log('Bomb Board:');
+// printBoard(bombBoard);
 
-const playerBoard = generatePlayerBoard(3,3);
-const bombBoard = generateBombBoard(3,3,4);
-
-console.log('Player Board:');
-printBoard(playerBoard);
-
-console.log('Bomb Board:');
-printBoard(bombBoard);
-
-flipTile(playerBoard, bombBoard, 0, 1);
-console.log('Updated Player Board:');
-printBoard(playerBoard);
+// flipTile(playerBoard, bombBoard, 0, 1);
+// console.log('Updated Player Board:');
+// printBoard(playerBoard);
 
 // test the number of rows and columns
 // console.log(bombBoard.length);
 // console.log(bombBoard[0].length);
 
+// test the Board and Game class
+const g = new Game(3,3,3);
+g.playerMove(0,0);
+g.playerMove(0,1);
+g.playerMove(1,0);
+g.playerMove(2,0);
 
 
 
