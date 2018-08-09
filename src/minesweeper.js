@@ -1,4 +1,21 @@
-// Dynamic code version 3, 6 Aug 2018
+// Dynamic code version 5, 9 Aug 2018
+class Board {
+  constructor(numberOfRows, numberOfColumns, numberOfBombs){
+    this._numberOfBombs = numberOfBombs;
+    this._numberOfTiles = numberOfRows * numberOfColumns;
+    this._playerBoard = generatePlayerBoard(numberOfRows,
+      numberOfColumns);
+    this._bombBoard = generateBombBoard(numberOfRows,
+      numberOfColumns, numberOfBombs);
+    // this._numberOfRows = numberOfRows;
+    // this._numberOfColumns = numberOfColumns;
+
+  }
+}
+
+
+
+
 
 // generate dynamically coded playboard
 const generatePlayerBoard = (numberOfRows, numberOfColumns) => {
@@ -74,9 +91,7 @@ const getNumberOfNeighbourBombs = (bombBoard, rowIndex, columnIndex) =>{
   		}
   	}
   });
-
   return numberOfBombs;
-
 };
 
 const flipTile = (playerBoard, bombBoard, rowIndex, columnIndex) => {
@@ -89,9 +104,7 @@ const flipTile = (playerBoard, bombBoard, rowIndex, columnIndex) => {
   	playerBoard[rowIndex][columnIndex] = getNumberOfNeighbourBombs(
   		bombBoard,rowIndex, columnIndex);
   }
-
 };
-
 
 const printBoard = (board) => {
   console.log(board.map(row => row.join(' | ')).join('\n'));
