@@ -128,12 +128,19 @@ class Board {
 
 
 // test the Board and Game class
-const g = new Game(3,3,1);
-g.playerMove(0,0);
-g.playerMove(2,0);
-g.playerMove(1,0);
-g.playerMove(1,0);
+// const g = new Game(3,3,1);
+// g.playerMove(0,0);
+// g.playerMove(2,0);
+// g.playerMove(1,0);
+// g.playerMove(1,0);
 
+// to run this game in terminal, do the following steps
+// cd to the directory of the game
+// $node
+// $.load minesweeper.js
+// $ let g = new Game(3,3,1)
+// g.playerMove(0,0)
+// keep moving till the bomb is found
 
 
 
